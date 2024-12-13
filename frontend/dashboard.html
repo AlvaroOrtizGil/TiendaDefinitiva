@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        #dashboard {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            width: calc(48% - 10px);
+            box-sizing: border-box;
+            background-color: #fafafa;
+        }
+        .product h3 {
+            margin: 0 0 10px;
+            color: #555;
+        }
+        .product button {
+            margin-right: 10px;
+            padding: 8px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .product button:hover {
+            background-color: #45a049;
+        }
+        #actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #logout-button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #logout-button:hover {
+            background-color: #c9302c;
+        }
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="dashboard">
+        <h1>Bienvenido</h1>
+        <div id="products"></div>
+        <div id="actions">
+            <a href="cart.html">Acceder al carrito</a>
+            <button id="logout-button">Cerrar sesión</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Verificar token
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("No estás autenticado");
+                window.location.href = "login.html";
+            }
+    
+            // Cargar datos desde localStorage
+            const store = JSON.parse(localStorage.getItem("store"));
+            if (!store || !store.productos) {
+                alert("No se pudo cargar la tienda correctamente.");
+                return;
+            }
+    
+            const productsContainer = document.getElementById("products");
+    
+            // Renderizar productos de la tienda
+            store.productos.forEach((product) => {
+                const productDiv = document.createElement("div");
+                productDiv.className = "product";
+                productDiv.innerHTML = `
+                    <h3>${product.nombre}</h3>
+                    <p>Precio: ${product.precio}€</p>
+                    <button onclick="addToCart(${product.id})">Añadir al carrito</button>
+                    <button onclick="viewProduct(${product.id})">Ver producto</button>
+                `;
+                productsContainer.appendChild(productDiv);
+            });
+    
+            // Mostrar productos recientemente vistos
+            showRecentlyViewed(store.productos);
+    
+            // Mostrar número de productos en el carrito
+            updateCartCount();
+        });
+    
+        function addToCart(productId) {
+            const store = JSON.parse(localStorage.getItem("store"));
+            const product = store.productos.find((p) => p.id === productId);
+    
+            if (!product) {
+                alert("Producto no encontrado.");
+                return;
+            }
+    
+            // Obtener el carrito de localStorage
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+            // Verificar si el producto ya está en el carrito
+            const productInCart = cart.find(item => item.id === productId);
+            if (productInCart) {
+                alert("Este producto ya está en el carrito.");
+                return;
+            }
+    
+            // Añadir el producto al carrito
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+    
+            // Actualizar la cuenta del carrito
+            updateCartCount();
+    
+            alert("Producto añadido al carrito");
+        }
+    
+        function viewProduct(productId) {
+            // Obtener la lista de productos recientemente vistos desde localStorage
+            let recentlyViewed = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    
+            // Verificar si el producto ya está en la lista; si está, eliminarlo para moverlo al frente
+            recentlyViewed = recentlyViewed.filter(id => id !== productId);
+    
+            // Agregar el producto al inicio de la lista
+            recentlyViewed.unshift(productId);
+    
+            // Limitar la lista a un máximo de 5 productos
+            if (recentlyViewed.length > 5) {
+                recentlyViewed.pop();
+            }
+    
+            // Guardar la lista actualizada en localStorage
+            localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewed));
+    
+            // Redirigir a la página del producto
+            window.location.href = `product.html?id=${productId}`;
+        }
+    
+        // Función para mostrar los productos recientemente vistos
+        function showRecentlyViewed(allProducts) {
+            const recentlyViewed = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+            const recentlyViewedContainer = document.getElementById("recently-viewed-products");
+    
+            // Si no hay productos recientemente vistos, no hacer nada
+            if (recentlyViewed.length === 0) {
+                recentlyViewedContainer.innerHTML = "<p>No has visto ningún producto recientemente.</p>";
+                return;
+            }
+    
+            // Filtrar los productos recientemente vistos para obtener los detalles completos
+            const recentlyViewedProducts = allProducts.filter(product => recentlyViewed.includes(product.id));
+    
+            // Renderizar los productos recientemente vistos
+            recentlyViewedProducts.forEach((product) => {
+                const productDiv = document.createElement("div");
+                productDiv.className = "product";
+                productDiv.innerHTML = `
+                    <h3>${product.nombre}</h3>
+                    <p>Precio: ${product.precio}€</p>
+                    <button onclick="viewProduct(${product.id})">Ver producto</button>
+                `;
+                recentlyViewedContainer.appendChild(productDiv);
+            });
+        }
+    
+        // Función para actualizar el contador del carrito
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartCount = document.getElementById("cart-count");
+            if (cartCount) {
+                cartCount.textContent = `Carrito (${cart.length})`;
+            }
+        }
+    
+        // Función para cerrar sesión
+        document.getElementById("logout-button").addEventListener("click", () => {
+            // Eliminar token y datos del carrito de localStorage
+            localStorage.removeItem("token");
+            localStorage.removeItem("cart");
+    
+            // Redirigir a la página de login
+            alert("Has cerrado sesión.");
+            window.location.href = "login.html";
+        });
+    </script>
+        
+    
+
+    <div id="recently-viewed">
+        <h2>Productos recientemente vistos</h2>
+        <div id="recently-viewed-products"></div>
+    </div>
+    
+    
+</body>
+</html>

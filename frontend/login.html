@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoginNuevo</title>
+    <style>
+        /* Simple estilo para el formulario */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Nombre de usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+        // Función que maneja el formulario de login
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evitar que se recargue la página
+
+            // Obtener los valores del formulario
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Llamada al servidor con fetch
+            fetch('../backend/login.php', {  // Cambié la URL para apuntar a la ruta relativa correcta
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Si el login es exitoso, mostrar el token y redirigir a otro lugar
+                    console.log("Login exitoso, token:", data.token);
+                    console.log("Datos de la tienda:", data.store);
+
+                    // Guardar el token en localStorage
+                    localStorage.setItem('token', data.token);
+
+                    // Redirigir al dashboard o página principal
+                    window.location.href = 'dashboard.html'; // Puedes cambiar esto según tu flujo
+
+                } else {
+                    // Si el login falla, mostrar el error
+                    document.getElementById('errorMessage').textContent = data.message;
+                }
+            })
+            .catch(error => {
+                console.log("Error:", error);
+                document.getElementById('errorMessage').textContent = 'Hubo un problema al conectar con el servidor.';
+            });
+        });
+    </script>
+</body>
+</html>

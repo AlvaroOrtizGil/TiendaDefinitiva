@@ -1,0 +1,10 @@
+{
+    "categorias": [
+        { "id": 1, "nombre": "Electrónica" },
+        { "id": 2, "nombre": "Ropa" }
+    ],
+    "productos": [
+        { "id": 1, "nombre": "Laptop", "precio": 1000, "destacado": true, "id_categoria": 1 },
+        { "id": 2, "nombre": "Camiseta", "precio": 20, "destacado": false, "id_categoria": 2 }
+    ]
+}

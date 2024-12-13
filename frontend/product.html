@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .product-details {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .product-details h2 {
+            margin-bottom: 10px;
+        }
+        .product-details p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        #back-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+        }
+        #back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-details">
+        <h1>Detalles del Producto</h1>
+        <h2 id="product-name"></h2>
+        <p id="product-price"></p>
+        <p id="product-description"></p>
+        <a id="back-button" href="dashboard.html">Volver al Dashboard</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Obtener el parámetro "id" de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get("id"));
+
+            if (!productId) {
+                alert("Producto no encontrado.");
+                window.location.href = "dashboard.html";
+                return;
+            }
+
+            // Cargar la información del producto desde localStorage
+            const store = JSON.parse(localStorage.getItem("store"));
+            if (!store || !store.productos) {
+                alert("No se pudo cargar la tienda.");
+                return;
+            }
+
+            const product = store.productos.find(p => p.id === productId);
+            if (!product) {
+                alert("Producto no encontrado.");
+                window.location.href = "dashboard.html";
+                return;
+            }
+
+            // Mostrar los detalles del producto
+            document.getElementById("product-name").textContent = `Nombre: ${product.nombre}`;
+            document.getElementById("product-price").textContent = `Precio: ${product.precio}€`;
+            document.getElementById("product-description").textContent = `Descripción: ${product.descripcion || 'No disponible'}`;
+        });
+    </script>
+</body>
+</html>

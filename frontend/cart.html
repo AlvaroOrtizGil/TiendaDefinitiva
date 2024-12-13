@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        table th {
+            background-color: #f8f8f8;
+        }
+        .total {
+            font-weight: bold;
+            text-align: right;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los productos se mostrarán aquí -->
+        </tbody>
+    </table>
+
+    <p class="total">Total: $<span id="totalPrice">0.00</span></p>
+
+    <button class="btn" onclick="procesarCompra()">Procesar Compra</button>
+    <button class="btn btn-danger" onclick="vaciarCarrito()">Vaciar Carrito</button>
+
+    <script>
+        // Función para cargar productos desde el LocalStorage
+        function cargarCarrito() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartTableBody = document.querySelector('#cartTable tbody');
+            const totalPriceElement = document.getElementById('totalPrice');
+            cartTableBody.innerHTML = ''; // Limpia el contenido de la tabla
+            let total = 0;
+
+            cart.forEach((producto, index) => {
+                const subtotal = producto.precio * producto.cantidad;
+                total += subtotal;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${producto.nombre}</td>
+                    <td>$${producto.precio.toFixed(2)}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>$${subtotal.toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
+                    </td>
+                `;
+                cartTableBody.appendChild(row);
+            });
+
+            totalPriceElement.textContent = total.toFixed(2);
+        }
+
+        // Función para eliminar un producto del carrito
+        function eliminarProducto(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Elimina el producto en el índice especificado
+            localStorage.setItem('cart', JSON.stringify(cart));
+            cargarCarrito(); // Recarga el carrito
+        }
+
+        // Función para vaciar el carrito
+        function vaciarCarrito() {
+            localStorage.removeItem('cart'); // Elimina el carrito del LocalStorage
+            cargarCarrito(); // Recarga el carrito
+        }
+
+        // Función para procesar la compra
+        function procesarCompra() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert('Debes iniciar sesión para procesar tu compra.');
+        return;
+    }
+
+    if (cart.length === 0) {
+        alert('Tu carrito está vacío.');
+        return;
+    }
+
+    fetch('http://localhost/Tienda/backend/carrito.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            token: token,
+            cart: cart
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Compra realizada con éxito!');
+            vaciarCarrito();
+        } else {
+            alert('Error al procesar la compra: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error al procesar la compra:', error));
+}
+
+        // Cargar el carrito al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarCarrito);
+    </script>
+
+<a  href="dashboard.html">Volver a la tienda:</a>
+</body>
+</html>
