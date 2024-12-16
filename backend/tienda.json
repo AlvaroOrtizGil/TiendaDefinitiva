@@ -1,10 +1,31 @@
 {
     "categorias": [
         { "id": 1, "nombre": "Electrónica" },
-        { "id": 2, "nombre": "Ropa" }
+        { "id": 2, "nombre": "Ropa" },
+        { "id": 3, "nombre": "Hogar" },
+        { "id": 4, "nombre": "Juguetes" },
+        { "id": 5, "nombre": "Deportes" }
     ],
     "productos": [
         { "id": 1, "nombre": "Laptop", "precio": 1000, "destacado": true, "id_categoria": 1 },
-        { "id": 2, "nombre": "Camiseta", "precio": 20, "destacado": false, "id_categoria": 2 }
+        { "id": 2, "nombre": "Camiseta", "precio": 20, "destacado": false, "id_categoria": 2 },
+        { "id": 3, "nombre": "Auriculares", "precio": 150, "destacado": true, "id_categoria": 1 },
+        { "id": 4, "nombre": "Smartphone", "precio": 800, "destacado": true, "id_categoria": 1 },
+        { "id": 5, "nombre": "Televisor 4K", "precio": 600, "destacado": false, "id_categoria": 1 },
+        { "id": 6, "nombre": "Chaqueta de Invierno", "precio": 50, "destacado": false, "id_categoria": 2 },
+        { "id": 7, "nombre": "Pantalón Vaquero", "precio": 40, "destacado": false, "id_categoria": 2 },
+        { "id": 8, "nombre": "Zapatillas Deportivas", "precio": 80, "destacado": true, "id_categoria": 2 },
+        { "id": 9, "nombre": "Sofá de Tela", "precio": 300, "destacado": false, "id_categoria": 3 },
+        { "id": 10, "nombre": "Mesa de Comedor", "precio": 120, "destacado": false, "id_categoria": 3 },
+        { "id": 11, "nombre": "Lámpara de Techo", "precio": 45, "destacado": false, "id_categoria": 3 },
+        { "id": 12, "nombre": "Pelota de Fútbol", "precio": 20, "destacado": true, "id_categoria": 4 },
+        { "id": 13, "nombre": "Muñeca Barbie", "precio": 25, "destacado": false, "id_categoria": 4 },
+        { "id": 14, "nombre": "Pista de Hot Wheels", "precio": 35, "destacado": true, "id_categoria": 4 },
+        { "id": 15, "nombre": "Raqueta de Tenis", "precio": 60, "destacado": true, "id_categoria": 5 },
+        { "id": 16, "nombre": "Balón de Baloncesto", "precio": 25, "destacado": false, "id_categoria": 5 },
+        { "id": 17, "nombre": "Bicicleta de Montaña", "precio": 350, "destacado": true, "id_categoria": 5 },
+        { "id": 18, "nombre": "Bicicleta Estática", "precio": 150, "destacado": false, "id_categoria": 5 },
+        { "id": 19, "nombre": "Patines en Línea", "precio": 50, "destacado": false, "id_categoria": 5 },
+        { "id": 20, "nombre": "Kettlebell de 10kg", "precio": 40, "destacado": false, "id_categoria": 5 }
     ]
 }
