@@ -163,9 +163,13 @@
 
             // Cerrar sesión
             document.getElementById("logout-button").addEventListener("click", () => {
-                localStorage.removeItem("token");
+            
+            localStorage.removeItem("token");
                 localStorage.removeItem("cart");
                 localStorage.removeItem("recentlyViewed"); // Limpiar productos vistos al cerrar sesión
+                localStorage.removeItem("store"); 
+                
+              
                 alert("Sesión cerrada.");
                 window.location.href = "login.html";
             });
