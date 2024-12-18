@@ -73,31 +73,32 @@
     <script>
         // Función para cargar productos desde el LocalStorage
         function cargarCarrito() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartTableBody = document.querySelector('#cartTable tbody');
-            const totalPriceElement = document.getElementById('totalPrice');
-            cartTableBody.innerHTML = ''; // Limpia el contenido de la tabla
-            let total = 0;
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartTableBody = document.querySelector('#cartTable tbody');
+    const totalPriceElement = document.getElementById('totalPrice');
+    cartTableBody.innerHTML = ''; // Limpia el contenido de la tabla
+    let total = 0;
 
-            cart.forEach((producto, index) => {
-                const subtotal = producto.precio * producto.cantidad;
-                total += subtotal;
+    cart.forEach((producto, index) => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
 
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${producto.nombre}</td>
-                    <td>$${producto.precio.toFixed(2)}</td>
-                    <td>${producto.cantidad}</td>
-                    <td>$${subtotal.toFixed(2)}</td>
-                    <td>
-                        <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
-                    </td>
-                `;
-                cartTableBody.appendChild(row);
-            });
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><img src="${producto.imagen}" alt="${producto.nombre}" style="width: 50px; height: auto;"></td>
+            <td>${producto.nombre}</td>
+            <td>$${producto.precio.toFixed(2)}</td>
+            <td>${producto.cantidad}</td>
+            <td>$${subtotal.toFixed(2)}</td>
+            <td>
+                <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
+            </td>
+        `;
+        cartTableBody.appendChild(row);
+    });
 
-            totalPriceElement.textContent = total.toFixed(2);
-        }
+    totalPriceElement.textContent = total.toFixed(2);
+}
 
         // Función para eliminar un producto del carrito
         function eliminarProducto(index) {

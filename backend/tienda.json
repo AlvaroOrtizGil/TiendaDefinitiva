@@ -1,31 +1,136 @@
 {
     "categorias": [
-        { "id": 1, "nombre": "Electrónica" },
-        { "id": 2, "nombre": "Ropa" },
-        { "id": 3, "nombre": "Hogar" },
-        { "id": 4, "nombre": "Juguetes" },
-        { "id": 5, "nombre": "Deportes" }
+      { "id": 1, "nombre": "Guitarras Eléctricas" },
+      { "id": 2, "nombre": "Guitarras Acústicas" },
+      { "id": 3, "nombre": "Guitarras para Niños" }
     ],
     "productos": [
-        { "id": 1, "nombre": "Laptop", "precio": 1000, "destacado": true, "id_categoria": 1 },
-        { "id": 2, "nombre": "Camiseta", "precio": 20, "destacado": false, "id_categoria": 2 },
-        { "id": 3, "nombre": "Auriculares", "precio": 150, "destacado": true, "id_categoria": 1 },
-        { "id": 4, "nombre": "Smartphone", "precio": 800, "destacado": true, "id_categoria": 1 },
-        { "id": 5, "nombre": "Televisor 4K", "precio": 600, "destacado": false, "id_categoria": 1 },
-        { "id": 6, "nombre": "Chaqueta de Invierno", "precio": 50, "destacado": false, "id_categoria": 2 },
-        { "id": 7, "nombre": "Pantalón Vaquero", "precio": 40, "destacado": false, "id_categoria": 2 },
-        { "id": 8, "nombre": "Zapatillas Deportivas", "precio": 80, "destacado": true, "id_categoria": 2 },
-        { "id": 9, "nombre": "Sofá de Tela", "precio": 300, "destacado": false, "id_categoria": 3 },
-        { "id": 10, "nombre": "Mesa de Comedor", "precio": 120, "destacado": false, "id_categoria": 3 },
-        { "id": 11, "nombre": "Lámpara de Techo", "precio": 45, "destacado": false, "id_categoria": 3 },
-        { "id": 12, "nombre": "Pelota de Fútbol", "precio": 20, "destacado": true, "id_categoria": 4 },
-        { "id": 13, "nombre": "Muñeca Barbie", "precio": 25, "destacado": false, "id_categoria": 4 },
-        { "id": 14, "nombre": "Pista de Hot Wheels", "precio": 35, "destacado": true, "id_categoria": 4 },
-        { "id": 15, "nombre": "Raqueta de Tenis", "precio": 60, "destacado": true, "id_categoria": 5 },
-        { "id": 16, "nombre": "Balón de Baloncesto", "precio": 25, "destacado": false, "id_categoria": 5 },
-        { "id": 17, "nombre": "Bicicleta de Montaña", "precio": 350, "destacado": true, "id_categoria": 5 },
-        { "id": 18, "nombre": "Bicicleta Estática", "precio": 150, "destacado": false, "id_categoria": 5 },
-        { "id": 19, "nombre": "Patines en Línea", "precio": 50, "destacado": false, "id_categoria": 5 },
-        { "id": 20, "nombre": "Kettlebell de 10kg", "precio": 40, "destacado": false, "id_categoria": 5 }
+      {
+        "id": 1,
+        "nombre": "Fender Stratocaster",
+        "precio": 1200,
+        "imagen": "images/fender_stratocaster.jpg",
+        "id_categoria": 1
+      },
+      {
+        "id": 2,
+        "nombre": "Gibson Les Paul",
+        "precio": 2500,
+        "imagen": "images/gibson_les_paul.jpg",
+        "id_categoria": 1
+      },
+      {
+        "id": 3,
+        "nombre": "Ibanez RG550",
+        "precio": 900,
+        "imagen": "/TiendaDefinitiva/images/ibanez_rg550.jpg",
+        "id_categoria": 1
+      },
+      {
+        "id": 4,
+        "nombre": "Yamaha Pacifica 112V",
+        "precio": 300,
+        "imagen": "/TiendaDefinitiva/images/yamaha_pacifica_112v.jpg",
+        "id_categoria": 1
+      },
+      {
+        "id": 5,
+        "nombre": "PRS Custom 24",
+        "precio": 3500,
+        "imagen": "images/prs_custom_24.jpg",
+        "id_categoria": 1
+      },
+      {
+        "id": 6,
+        "nombre": "Jackson Dinky JS32",
+        "precio": 450,
+        "imagen": "images/jackson_dinky_js32.jpg",
+        "id_categoria": 1
+      },
+      {
+        "id": 7,
+        "nombre": "Taylor 214ce",
+        "precio": 1200,
+        "imagen": "images/taylor_214ce.jpg",
+        "id_categoria": 2
+      },
+      {
+        "id": 8,
+        "nombre": "Martin D-28",
+        "precio": 3000,
+        "imagen": "images/martin_d28.jpg",
+        "id_categoria": 2
+      },
+      {
+        "id": 9,
+        "nombre": "Yamaha FG800",
+        "precio": 200,
+        "imagen": "images/yamaha_fg800.jpg",
+        "id_categoria": 2
+      },
+      {
+        "id": 10,
+        "nombre": "Epiphone DR-100",
+        "precio": 150,
+        "imagen": "images/epiphone_dr100.jpg",
+        "id_categoria": 2
+      },
+      {
+        "id": 11,
+        "nombre": "Gibson J-45",
+        "precio": 2500,
+        "imagen": "images/gibson_j45.jpg",
+        "id_categoria": 2
+      },
+      {
+        "id": 12,
+        "nombre": "Seagull S6 Original",
+        "precio": 600,
+        "imagen": "images/seagull_s6_original.jpg",
+        "id_categoria": 2
+      },
+      {
+        "id": 13,
+        "nombre": "Yamaha JR1",
+        "precio": 120,
+        "imagen": "images/yamaha_jr1.jpg",
+        "id_categoria": 3
+      },
+      {
+        "id": 14,
+        "nombre": "Ibanez Mikro",
+        "precio": 150,
+        "imagen": "images/ibanez_mikro.jpg",
+        "id_categoria": 3
+      },
+      {
+        "id": 15,
+        "nombre": "Fender Squier Mini",
+        "precio": 200,
+        "imagen": "images/fender_squier_mini.jpg",
+        "id_categoria": 3
+      },
+      {
+        "id": 16,
+        "nombre": "Taylor Baby Taylor",
+        "precio": 350,
+        "imagen": "images/taylor_baby_taylor.jpg",
+        "id_categoria": 3
+      },
+      {
+        "id": 17,
+        "nombre": "Martin LX1 Little Martin",
+        "precio": 400,
+        "imagen": "images/martin_lx1_little.jpg",
+        "id_categoria": 3
+      },
+      {
+        "id": 18,
+        "nombre": "Epiphone PRO-1",
+        "precio": 100,
+        "imagen": "images/epiphone_pro1.jpg",
+        "id_categoria": 3
+      }
     ]
-}
+  }
+  

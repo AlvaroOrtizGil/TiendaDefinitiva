@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <div id="dashboard">
         <h1>Dashboard de Productos</h1>
-        
+
         <!-- Categorías -->
         <div id="categories">
             <button class="category" data-id="all">Todas las Categorías</button>
         </div>
-        
+
         <!-- Lista de Productos -->
         <div id="products"></div>
 
@@ -24,7 +26,7 @@
             <button id="logout-button">Cerrar sesión</button>
         </div>
     </div>
-    
+
     <div id="recently-viewed">
         <h2>Productos recientemente vistos</h2>
         <div id="recently-viewed-products"></div>
@@ -72,6 +74,7 @@
                     productDiv.className = "product";
                     productDiv.innerHTML = `
                         <h3>${product.nombre}</h3>
+                        <img src="${product.imagen}" alt="Imagen de ${product.nombre}" style="width: 150px; height: auto;">
                         <p>Precio: ${product.precio}€</p>
                         <button onclick="addToCart(${product.id})">Añadir al carrito</button>
                         <button onclick="viewProduct(${product.id})">Ver producto</button>
@@ -83,8 +86,8 @@
             // Filtrar productos por categoría
             function filterProductsByCategory(categoryId) {
                 const store = JSON.parse(localStorage.getItem("store"));
-                const filteredProducts = categoryId === "all" 
-                    ? store.productos 
+                const filteredProducts = categoryId === "all"
+                    ? store.productos
                     : store.productos.filter(product => product.id_categoria === parseInt(categoryId));
                 renderProducts(filteredProducts);
             }
@@ -115,6 +118,13 @@
             window.viewProduct = function (productId) {
                 const store = JSON.parse(localStorage.getItem("store"));
                 const product = store.productos.find(p => p.id === productId);
+                if (!product) {
+        alert("Producto no encontrado.");
+        return;
+    }
+
+    // Guardar el producto en localStorage con la clave 'producto'
+    localStorage.setItem("producto", JSON.stringify(product));  
                 addToRecentlyViewed(product); // Agregar el producto a los recientemente vistos
                 window.location.href = `product.html?id=${productId}`;
             };
@@ -143,11 +153,12 @@
                     const productDiv = document.createElement("div");
                     productDiv.className = "product";
                     productDiv.innerHTML = `
-                        <h3>${product.nombre}</h3>
-                        <p>Precio: ${product.precio}€</p>
-                        <button onclick="addToCart(${product.id})">Añadir al carrito</button>
-                        <button onclick="viewProduct(${product.id})">Ver producto</button>
-                    `;
+                  <h3>${product.nombre}</h3>
+                      <img src="${product.imagen}" alt="Imagen de ${product.nombre}" style="width: 150px; height: auto;">
+                     <p>Precio: ${product.precio}€</p>
+                    <button onclick="addToCart(${product.id})">Añadir al carrito</button>
+                    <button onclick="viewProduct(${product.id})">Ver producto</button>
+                                     `;
                     recentlyViewedContainer.appendChild(productDiv);
                 });
             }
@@ -163,17 +174,18 @@
 
             // Cerrar sesión
             document.getElementById("logout-button").addEventListener("click", () => {
-            
-            localStorage.removeItem("token");
+
+                localStorage.removeItem("token");
                 localStorage.removeItem("cart");
                 localStorage.removeItem("recentlyViewed"); // Limpiar productos vistos al cerrar sesión
-                localStorage.removeItem("store"); 
-                
-              
+                localStorage.removeItem("store");
+                localStorage.removeItem("producto");
+
                 alert("Sesión cerrada.");
                 window.location.href = "login.html";
             });
         });
     </script>
 </body>
+
 </html>
