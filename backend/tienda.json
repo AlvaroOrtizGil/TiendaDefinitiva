@@ -1,136 +1,153 @@
 {
-    "categorias": [
-      { "id": 1, "nombre": "Guitarras Eléctricas" },
-      { "id": 2, "nombre": "Guitarras Acústicas" },
-      { "id": 3, "nombre": "Guitarras para Niños" }
-    ],
-    "productos": [
-      {
-        "id": 1,
-        "nombre": "Fender Stratocaster",
-        "precio": 1200,
-        "imagen": "images/fender_stratocaster.jpg",
-        "id_categoria": 1
-      },
-      {
-        "id": 2,
-        "nombre": "Gibson Les Paul",
-        "precio": 2500,
-        "imagen": "images/gibson_les_paul.jpg",
-        "id_categoria": 1
-      },
-      {
-        "id": 3,
-        "nombre": "Ibanez RG550",
-        "precio": 900,
-        "imagen": "/TiendaDefinitiva/images/ibanez_rg550.jpg",
-        "id_categoria": 1
-      },
-      {
-        "id": 4,
-        "nombre": "Yamaha Pacifica 112V",
-        "precio": 300,
-        "imagen": "/TiendaDefinitiva/images/yamaha_pacifica_112v.jpg",
-        "id_categoria": 1
-      },
-      {
-        "id": 5,
-        "nombre": "PRS Custom 24",
-        "precio": 3500,
-        "imagen": "images/prs_custom_24.jpg",
-        "id_categoria": 1
-      },
-      {
-        "id": 6,
-        "nombre": "Jackson Dinky JS32",
-        "precio": 450,
-        "imagen": "images/jackson_dinky_js32.jpg",
-        "id_categoria": 1
-      },
-      {
-        "id": 7,
-        "nombre": "Taylor 214ce",
-        "precio": 1200,
-        "imagen": "images/taylor_214ce.jpg",
-        "id_categoria": 2
-      },
-      {
-        "id": 8,
-        "nombre": "Martin D-28",
-        "precio": 3000,
-        "imagen": "images/martin_d28.jpg",
-        "id_categoria": 2
-      },
-      {
-        "id": 9,
-        "nombre": "Yamaha FG800",
-        "precio": 200,
-        "imagen": "images/yamaha_fg800.jpg",
-        "id_categoria": 2
-      },
-      {
-        "id": 10,
-        "nombre": "Epiphone DR-100",
-        "precio": 150,
-        "imagen": "images/epiphone_dr100.jpg",
-        "id_categoria": 2
-      },
-      {
-        "id": 11,
-        "nombre": "Gibson J-45",
-        "precio": 2500,
-        "imagen": "images/gibson_j45.jpg",
-        "id_categoria": 2
-      },
-      {
-        "id": 12,
-        "nombre": "Seagull S6 Original",
-        "precio": 600,
-        "imagen": "images/seagull_s6_original.jpg",
-        "id_categoria": 2
-      },
-      {
-        "id": 13,
-        "nombre": "Yamaha JR1",
-        "precio": 120,
-        "imagen": "images/yamaha_jr1.jpg",
-        "id_categoria": 3
-      },
-      {
-        "id": 14,
-        "nombre": "Ibanez Mikro",
-        "precio": 150,
-        "imagen": "images/ibanez_mikro.jpg",
-        "id_categoria": 3
-      },
-      {
-        "id": 15,
-        "nombre": "Fender Squier Mini",
-        "precio": 200,
-        "imagen": "images/fender_squier_mini.jpg",
-        "id_categoria": 3
-      },
-      {
-        "id": 16,
-        "nombre": "Taylor Baby Taylor",
-        "precio": 350,
-        "imagen": "images/taylor_baby_taylor.jpg",
-        "id_categoria": 3
-      },
-      {
-        "id": 17,
-        "nombre": "Martin LX1 Little Martin",
-        "precio": 400,
-        "imagen": "images/martin_lx1_little.jpg",
-        "id_categoria": 3
-      },
-      {
-        "id": 18,
-        "nombre": "Epiphone PRO-1",
-        "precio": 100,
-        "imagen": "images/epiphone_pro1.jpg",
-        "id_categoria": 3
-      }
-    ]
-  }
-  
+  "categorias": [
+    { "id": 1, "nombre": "Guitarras Eléctricas" },
+    { "id": 2, "nombre": "Guitarras Acústicas" },
+    { "id": 3, "nombre": "Guitarras para Niños" }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Fender Stratocaster",
+      "precio": 1200,
+      "imagen": "images/fender_stratocaster.jpg",
+      "id_categoria": 1,
+      "description": "Una guitarra eléctrica legendaria conocida por su tono brillante y su diseño clásico."
+    },
+    {
+      "id": 2,
+      "nombre": "Gibson Les Paul",
+      "precio": 2500,
+      "imagen": "images/gibson_les_paul.jpg",
+      "id_categoria": 1,
+      "description": "Famosa por su sonido cálido y profundo, ideal para rock y blues."
+    },
+    {
+      "id": 3,
+      "nombre": "Ibanez RG550",
+      "precio": 900,
+      "imagen": "images/ibanez_rg550.jpg",
+      "id_categoria": 1,
+      "description": "Perfecta para metal y shred, con un mástil rápido y un diseño agresivo."
+    },
+    {
+      "id": 4,
+      "nombre": "Yamaha Pacifica 112V",
+      "precio": 300,
+      "imagen": "images/yamaha_pacifica_112v.jpg",
+      "id_categoria": 1,
+      "description": "Una opción versátil para principiantes, con un gran equilibrio de calidad y precio."
+    },
+    {
+      "id": 5,
+      "nombre": "PRS Custom 24",
+      "precio": 3500,
+      "imagen": "images/prs_custom_24.jpg",
+      "id_categoria": 1,
+      "description": "Reconocida por su versatilidad tonal y acabados exquisitos, favorita de muchos profesionales."
+    },
+    {
+      "id": 6,
+      "nombre": "Jackson Dinky JS32",
+      "precio": 450,
+      "imagen": "images/jackson_dinky_js32.jpg",
+      "id_categoria": 1,
+      "description": "Ideal para géneros pesados, con pastillas de alta salida y un diseño moderno."
+    },
+    {
+      "id": 7,
+      "nombre": "Taylor 214ce",
+      "precio": 1200,
+      "imagen": "images/taylor_214ce.jpg",
+      "id_categoria": 2,
+      "description": "Acústica de alta calidad con un sonido brillante y proyección sobresaliente."
+    },
+    {
+      "id": 8,
+      "nombre": "Martin D-28",
+      "precio": 3000,
+      "imagen": "images/martin_d28.jpg",
+      "id_categoria": 2,
+      "description": "Un icono en guitarras acústicas, conocida por su tono rico y resonancia."
+    },
+    {
+      "id": 9,
+      "nombre": "Yamaha FG800",
+      "precio": 200,
+      "imagen": "images/yamaha_fg800.jpg",
+      "id_categoria": 2,
+      "description": "Una acústica asequible que ofrece un sonido cálido y gran durabilidad."
+    },
+    {
+      "id": 10,
+      "nombre": "Epiphone DR-100",
+      "precio": 150,
+      "imagen": "images/epiphone_dr100.jpg",
+      "id_categoria": 2,
+      "description": "Ideal para principiantes, con un buen balance tonal y diseño clásico."
+    },
+    {
+      "id": 11,
+      "nombre": "Gibson J-45",
+      "precio": 2500,
+      "imagen": "images/gibson_j45.jpg",
+      "id_categoria": 2,
+      "description": "Apodada 'La Reina' de las guitarras acústicas, con un sonido cálido y envolvente."
+    },
+    {
+      "id": 12,
+      "nombre": "Seagull S6 Original",
+      "precio": 600,
+      "imagen": "images/seagull_s6_original.jpg",
+      "id_categoria": 2,
+      "description": "Destaca por su construcción artesanal y un tono claro y definido."
+    },
+    {
+      "id": 13,
+      "nombre": "Yamaha JR1",
+      "precio": 120,
+      "imagen": "images/yamaha_jr1.jpg",
+      "id_categoria": 3,
+      "description": "Compacta y fácil de tocar, perfecta para niños o para llevar de viaje."
+    },
+    {
+      "id": 14,
+      "nombre": "Ibanez Mikro",
+      "precio": 150,
+      "imagen": "images/ibanez_mikro.jpg",
+      "id_categoria": 3,
+      "description": "Diseñada para manos pequeñas, ofrece un gran sonido en un paquete reducido."
+    },
+    {
+      "id": 15,
+      "nombre": "Fender Squier Mini",
+      "precio": 200,
+      "imagen": "images/fender_squier_mini.jpg",
+      "id_categoria": 3,
+      "description": "Mini versión de una clásica, con un tamaño ideal para jóvenes músicos."
+    },
+    {
+      "id": 16,
+      "nombre": "Taylor Baby Taylor",
+      "precio": 350,
+      "imagen": "images/taylor_baby_taylor.jpg",
+      "id_categoria": 3,
+      "description": "Pequeña pero poderosa, ofrece un tono impresionante para su tamaño."
+    },
+    {
+      "id": 17,
+      "nombre": "Martin LX1 Little Martin",
+      "precio": 400,
+      "imagen": "images/martin_lx1_little.jpg",
+      "id_categoria": 3,
+      "description": "Compacta y duradera, ideal para estudiantes y músicos en movimiento."
+    },
+    {
+      "id": 18,
+      "nombre": "Epiphone PRO-1",
+      "precio": 100,
+      "imagen": "images/epiphone_pro1.jpg",
+      "id_categoria": 3,
+      "description": "Facilita el aprendizaje con su diseño ergonómico y tacto cómodo."
+    }
+  ]
+}

@@ -55,9 +55,7 @@
             <tr>
                 <th>Producto</th>
                 <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
+               
             </tr>
         </thead>
         <tbody>
@@ -80,16 +78,15 @@
     let total = 0;
 
     cart.forEach((producto, index) => {
-        const subtotal = producto.precio * producto.cantidad;
+        const subtotal = producto.precio ;
         total += subtotal;
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><img src="${producto.imagen}" alt="${producto.nombre}" style="width: 50px; height: auto;"></td>
-            <td>${producto.nombre}</td>
+            <td><img src="${producto.imagen}"  alt="${producto.nombre}" style="width: 50px; height: auto;"> ${producto.nombre}</td>
+            
             <td>$${producto.precio.toFixed(2)}</td>
-            <td>${producto.cantidad}</td>
-            <td>$${subtotal.toFixed(2)}</td>
+           
             <td>
                 <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
             </td>

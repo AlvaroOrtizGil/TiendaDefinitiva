@@ -26,5 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mostrar los detalles del producto
     document.getElementById("product-name").textContent = `Nombre: ${product.nombre}`;
     document.getElementById("product-price").textContent = `Precio: ${product.precio}€`;
-    document.getElementById("product-description").textContent = `Descripción: ${product.descripcion || 'No disponible'}`;
+    document.getElementById("product-image").src = product.imagen;
+    document.getElementById("product-image").alt = `Imagen de ${product.nombre}`;
+   
 });

@@ -6,27 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        #dashboard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        #logo {
+            max-width: 100px;
+            height: auto;
+        }
+
+        #logout-button {
+            padding: 8px 16px;
+            background-color: #f44336; /* Rojo */
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-left: 120px; /* Espacio entre el logo y el botón */
+        }
+
+        #logout-button:hover {
+            background-color: #d32f2f; /* Rojo más oscuro */
+            transform: translateY(-2px);
+        }
+
+        #logout-button:active {
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
 <body>
     <div id="dashboard">
-        <h1>Dashboard de Productos</h1>
-
-        <!-- Categorías -->
-        <div id="categories">
-            <button class="category" data-id="all">Todas las Categorías</button>
+        <div id="logo-container">
+            <img src="images/logo.webp" alt="Logo" id="logo">
         </div>
 
-        <!-- Lista de Productos -->
-        <div id="products"></div>
-
-        <!-- Acciones -->
-        <div id="actions">
-            <a href="cart.html">Acceder al carrito (<span id="cart-count">0</span>)</a>
-            <button id="logout-button">Cerrar sesión</button>
-        </div>
+        <!-- Botón de Cerrar Sesión -->
+        <button id="logout-button">Cerrar sesión</button>
     </div>
 
+    <!-- Categorías -->
+    <div id="categories"></div>
+
+    <!-- Lista de Productos -->
+    <div id="products"></div>
+
+    <!-- Carrito -->
+    <div id="cart-container">
+        <a href="cart.html" id="cart-button"> <i class="bi bi-cart"></i> (<span id="cart-count">0</span>)</a>
+    </div>
+
+    <!-- Productos recientemente vistos -->
     <div id="recently-viewed">
         <h2>Productos recientemente vistos</h2>
         <div id="recently-viewed-products"></div>
@@ -52,9 +95,18 @@
                 })
                 .catch(() => alert("Error al cargar la tienda."));
 
-            // Categorías: Renderizar botones de categorías
             function renderCategories(categories) {
                 const categoriesContainer = document.getElementById("categories");
+
+                // Botón para "Todas las Categorías"
+                const allCategoriesButton = document.createElement("button");
+                allCategoriesButton.className = "category";
+                allCategoriesButton.textContent = "Todas las Guitarras";
+                allCategoriesButton.dataset.id = "all"; // Establecer id como "all"
+                allCategoriesButton.addEventListener("click", () => filterProductsByCategory("all"));
+                categoriesContainer.appendChild(allCategoriesButton);
+
+                // Renderizar los botones de las categorías
                 categories.forEach(category => {
                     const button = document.createElement("button");
                     button.className = "category";
@@ -68,7 +120,8 @@
             // Productos: Renderizar todos los productos
             function renderProducts(products) {
                 const productsContainer = document.getElementById("products");
-                productsContainer.innerHTML = "";
+                productsContainer.innerHTML = ""; // Limpiar productos previos
+
                 products.forEach(product => {
                     const productDiv = document.createElement("div");
                     productDiv.className = "product";
@@ -87,8 +140,8 @@
             function filterProductsByCategory(categoryId) {
                 const store = JSON.parse(localStorage.getItem("store"));
                 const filteredProducts = categoryId === "all"
-                    ? store.productos
-                    : store.productos.filter(product => product.id_categoria === parseInt(categoryId));
+                    ? store.productos // Mostrar todos los productos
+                    : store.productos.filter(product => product.id_categoria === parseInt(categoryId)); // Filtrar por categoría
                 renderProducts(filteredProducts);
             }
 
@@ -119,12 +172,12 @@
                 const store = JSON.parse(localStorage.getItem("store"));
                 const product = store.productos.find(p => p.id === productId);
                 if (!product) {
-        alert("Producto no encontrado.");
-        return;
-    }
+                    alert("Producto no encontrado.");
+                    return;
+                }
 
-    // Guardar el producto en localStorage con la clave 'producto'
-    localStorage.setItem("producto", JSON.stringify(product));  
+                // Guardar el producto en localStorage con la clave 'producto'
+                localStorage.setItem("producto", JSON.stringify(product));
                 addToRecentlyViewed(product); // Agregar el producto a los recientemente vistos
                 window.location.href = `product.html?id=${productId}`;
             };
@@ -153,12 +206,12 @@
                     const productDiv = document.createElement("div");
                     productDiv.className = "product";
                     productDiv.innerHTML = `
-                  <h3>${product.nombre}</h3>
-                      <img src="${product.imagen}" alt="Imagen de ${product.nombre}" style="width: 150px; height: auto;">
-                     <p>Precio: ${product.precio}€</p>
-                    <button onclick="addToCart(${product.id})">Añadir al carrito</button>
-                    <button onclick="viewProduct(${product.id})">Ver producto</button>
-                                     `;
+                        <h3>${product.nombre}</h3>
+                        <img src="${product.imagen}" alt="Imagen de ${product.nombre}" style="width: 150px; height: auto;">
+                        <p>Precio: ${product.precio}€</p>
+                        <button onclick="addToCart(${product.id})">Añadir al carrito</button>
+                        <button onclick="viewProduct(${product.id})">Ver producto</button>
+                    `;
                     recentlyViewedContainer.appendChild(productDiv);
                 });
             }
@@ -174,7 +227,6 @@
 
             // Cerrar sesión
             document.getElementById("logout-button").addEventListener("click", () => {
-
                 localStorage.removeItem("token");
                 localStorage.removeItem("cart");
                 localStorage.removeItem("recentlyViewed"); // Limpiar productos vistos al cerrar sesión

@@ -4,69 +4,125 @@ body {
     margin: 0;
     padding: 0;
 }
+
 #dashboard {
-    max-width: 1000px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #eee8e8;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    /* Configuración del fondo */
+    /*background-image: url("../images/logo.webp"); /* Ruta de la imagen */
+    background-size: cover; /* Escalar para cubrir toda la pantalla */
+    background-repeat: no-repeat; /* Evitar repetición */
+    background-position: center; /* Centrar la imagen */
+    background-attachment: fixed; /* Mantener fijo al hacer scroll */
 }
+
 h1 {
     text-align: center;
     color: #333;
 }
+
 #categories {
     margin-bottom: 20px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
 }
+
 .category {
-    padding: 10px 15px;
-    background-color: #007BFF;
-    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #6a7e82;
     text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .category:hover {
-    background-color: #0056b3;
+    background-color: #138496;
+    border-color: #17a2b8;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
+
 #products {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
+    margin-top: 20px; /* Añadir margen superior si es necesario */
 }
+
 .product {
-    border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    width: calc(48% - 10px);
-    box-sizing: border-box;
-    background-color: #fafafa;
+    width: 30%; /* Cada producto ocupará un 30% del contenedor */
+    box-sizing: border-box; /* Esto asegura que el padding no afecte el tamaño total */
+    text-align: center;
+    margin-bottom: 20px; /* Añadir espacio debajo de cada producto */
 }
+
 .product h3 {
     margin: 0 0 10px;
     color: #555;
 }
+
 .product button {
     margin-right: 10px;
-    padding: 8px 10px;
-    background-color: #4CAF50;
+    padding: 12px 20px; /* Aumenté el tamaño para mayor protagonismo */
+    font-size: 1rem; /* Texto más legible */
+    font-weight: bold; /* Texto audaz */
+    background: linear-gradient(135deg, #000000, #2575fc); /* Degradado atractivo */
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px; /* Botones redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para resaltar */
     cursor: pointer;
+    transition: all 0.3s ease; /* Transiciones suaves */
+    position: relative;
+    overflow: hidden; /* Oculta el efecto animado */
 }
+
 .product button:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #9cb60d, #6a11cb); /* Inversión del degradado */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+    transform: scale(1.05); /* Ligera ampliación */
 }
+
+.product button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-45deg); /* Crea el efecto diagonal */
+    transition: all 0.3s ease;
+}
+
+.product button:hover:after {
+    left: 100%; /* Efecto deslizante al pasar el mouse */
+}
+
+.product button:active {
+    transform: scale(0.98); /* Efecto de clic */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Reducción de la sombra */
+}
+
 #actions {
     margin-top: 20px;
     text-align: center;
 }
+
 #logout-button {
     margin-top: 15px;
     padding: 10px 15px;
@@ -76,9 +132,11 @@ h1 {
     border-radius: 4px;
     cursor: pointer;
 }
+
 #logout-button:hover {
     background-color: #c9302c;
 }
+
 a {
     display: inline-block;
     margin-right: 10px;
@@ -88,10 +146,86 @@ a {
     text-decoration: none;
     border-radius: 4px;
 }
+
 a:hover {
-    background-color: #0056b3;
+    background-color: #040404;
 }
+
 #cart-count {
     font-weight: bold;
-    color: #007BFF;
+    color: #ffffff;
+}
+
+/* Estilo para el contenedor del carrito */
+#cart-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000; /* Asegura que el carrito esté por encima de otros elementos */
+}
+
+/* Estilo del botón de carrito */
+#cart-button {
+    background-color: #3b403c; /* Color verde */
+    color: white;
+    padding: 10px 20px;
+    font-size: 19px;
+    text-decoration: none; /* Elimina el subrayado por defecto */
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+}
+
+#cart-button:hover {
+    background-color: #abb4ad; /* Cambiar el color cuando el cursor pase por encima */
+    transform: scale(1.05); /* Aumentar un poco el tamaño al pasar el ratón */
+}
+
+/* Estilo para cuando el botón del carrito es clickeado */
+#cart-button:active {
+    transform: scale(1); /* Devolver el tamaño normal al hacer clic */
+}
+
+/* Si deseas que el dashboard tenga algo de margen en la parte superior para no solapar el carrito */
+#dashboard {
+    padding-top: 50px; /* Deja espacio en la parte superior */
+}
+
+#recently-viewed h2 {
+    text-align: center;
+    color: #333;
+}
+
+#recently-viewed-products {
+    display: flex;
+    flex-wrap: wrap; /* Esto permite que los productos se muestren al lado, y si no caben, pasen a la siguiente línea */
+    gap: 20px; /* Espacio entre productos */
+    justify-content: center; /* Centra los productos */
+}
+#recently-viewed {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Logo en la parte superior derecha */
+#logo-container {
+    position: absolute;
+    margin-top: -30px;
+  
+    left: 20px;  /* Ajusta la distancia desde el lado derecho */
+}
+
+#logo {
+    width: 100px; /* Ajusta el tamaño del logo */
+    height: auto;
+}
+/* Estilo cuando el botón está seleccionado */
+.category.selected {
+    background-color: #17a2b8;  /* Color de fondo para el botón seleccionado */
+    border-color: #138496;      /* Resalta el borde */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
 }
